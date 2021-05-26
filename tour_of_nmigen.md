@@ -29,7 +29,7 @@
   - Clock domains can be added to modules with the following syntax
     ```python
     m = Module()
-    cd_por  = ClockDomain(
+    cd_por = ClockDomain(
         name='optional_name', # Default: (variable name).removeprefix('cd_')
         reset_less=True,      # Default: False
         clk_edge='neg',       # Options: {'pos', 'neg'}; Default: 'pos'
@@ -66,7 +66,11 @@
     ```
   - `m.FSM()`, `m.State()`, and `m.next` can be used to instantiate a finite state machine.
     ```python
-    with m.FSM() as name:
+    with m.FSM(
+        domain='clock_domain', # Default 'sync'
+        name='optional_name', # Default 'fsm'
+        reset='STATE_ONE', # If not specified, reset state unkown
+    ) as name:
         with m.State('STATE_ONE'):
             m.next = 'STATE_TWO'
         with m.State('STATE_TWO'):
