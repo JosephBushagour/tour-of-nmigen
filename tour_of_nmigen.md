@@ -181,7 +181,7 @@
     ```python
     m.d.comb += [
         self.example.eq(self.other),
-        Cat(self.a, self.b).eq(0b1100),
+        Cat(self.a, self.b).eq(0b1100), # self.a is 0b00, self.b is 0b11 (surprise?)
         # More statements here...
     ]
     m.d.sync += self.c.eq(self.c + 1) # Don't need [] if just 1 statement
